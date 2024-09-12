@@ -1,6 +1,6 @@
 # Status
 
-Working. No known problems found.
+Experimental phase. Not sure how well it works yet. May have persistence issues I need to work out.
 
 # How it works
 
