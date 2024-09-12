@@ -28,9 +28,9 @@ in
     version = "24.2.2";
 
     src = builtins.fetchurl {
-      url = "https://github.com/nkallen/plasticity/releases/download/v${version}/Plasticity-${version}.Setup.exe";
-      sha256 = lib.fakeHash;
-      # sha256 = "sha256:17pqpb2zhv5zxf2f1mwhr1rqys3inmrwb2z1g1ixl2h53kvlcchc";
+      url = "https://github.com/nkallen/plasticity/releases/download/v${version}/Plasticity.msi";
+      # sha256 = lib.fakeHash;
+      sha256 = "sha256:1llqb3w8dwd0kdf96d5vkz7zgz05hdyjhp7i84s4pzm8zfnvhssq";
     };
 
     # In most cases, you'll either be using an .exe or .zip as the src.
@@ -96,13 +96,9 @@ in
     # d="$WINEPREFIX/drive_c/${pname}"
     # config_dir="$HOME/.config/plasticity"
 
-    # mkdir -p "$d"
-    # unzip ${src} -d "$d"
-
-    # mkdir -p "$config_dir"
-
+    # https://www.advancedinstaller.com/silent-install-exe-msi-applications.html
     winAppInstall = ''
-      $WINE ${src} /S
+      $WINE msiexec /i ${src} /qb!
       regedit ${txtReg}
     '';
     # cp -v -n "${defaultSettings}" "$config_dir/SumatraPDF-settings.txt"
@@ -122,8 +118,8 @@ in
     # Command line arguments are in $ARGS, not $@
     # DO NOT BLOCK. For example, don't run: wineserver -w
     winAppRun = ''
+      wine "$WINEPREFIX/drive_c/Program Files/Plasticity/Plasticity.exe" "$ARGS"
     '';
-    # wine "$WINEPREFIX/drive_c/users/$USER/AppData/Local/Programs/VRoidStudio/${version}/VRoidStudio.exe" "$ARGS"
 
     # This code will run after winAppRun, but only for the first instance.
     # Therefore, if the app was already running, winAppPostRun will not execute.
@@ -176,7 +172,7 @@ in
         name = pname;
         exec = pname;
         icon = pname;
-        desktopName = "VRoid Studio";
+        desktopName = "Windows Plasticity";
         genericName = "3D CAD software for making anime figures";
         categories = ["Graphics" "Viewer"];
       })
@@ -192,7 +188,7 @@ in
     # };
 
     meta = with lib; {
-      description = "VRoid Studio";
+      description = "Windows Plasticity";
       homepage = "https://vroid.com/en/studio";
       license = licenses.unfree;
       maintainers = with maintainers; [];
