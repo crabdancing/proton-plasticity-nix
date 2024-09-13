@@ -1,8 +1,12 @@
 # NixOS flake for running Plasticity-for-Windows on NixOS
 
-> Why?
+> What?
 
-In a word, xNURBS.
+[Plasticity](https://www.plasticity.xyz/) is an up-and-coming CAD modeling software. This repo is a Nix flake that automates the process of getting the Windows version working on NixOS.
+
+> Why not use the Linux version?
+
+In a word, [xNURBS](https://www.plasticity.xyz/#features). If you're looking for a Linux version for Nix, I've been maintaining a standalone [flake for awhile](https://github.com/alexandriaptt/plasticity-flake), and there is now also [nixpkgs support](https://search.nixos.org/packages?query=plasticity).
 
 > Why not a shell script?
 
@@ -48,6 +52,6 @@ Note that unlike conventional NixOS applications, this package does not do all o
 # Disclaimers, Licenses, Credits
 
 
-This is not an official project, and is not supported or endorsed by Plasticity upstream. All copyrights & trademarks are the property of their respective owners. All code unique to this repo is GNU GPLv3.
+This is not an official project, and is not supported or endorsed by [Plasticity upstream](https://www.plasticity.xyz/). All copyrights & trademarks are the property of their respective owners. All code unique to this repo is GNU GPLv3.
 
 This repo contains a couple bits of code/data from elsewhere, including [wine-breeze-dark.reg](https://gist.github.com/Zeinok/ceaf6ff204792dde0ae31e0199d89398) from Zeinok, and `use-theme-none.reg` from bgstack15.
