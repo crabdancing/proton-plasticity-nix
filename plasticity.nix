@@ -42,13 +42,17 @@ in
     wineArch = "win64";
 
     enableInstallNotification = true;
-    fileMap = {
-      "${stateDir}" = "drive_c/users/$USER/AppData/Roaming/Plasticity";
-    };
+    # This should work, but it doesn't seem to?
+    # More testing required.
+    # fileMap = {
+    #   "${stateDir}" = "drive_c/users/$USER/AppData/Roaming/Plasticity";
+    # };
     enableMonoBootPrompt = false;
     fileMapDuringAppInstall = false;
     persistRegistry = false;
-    persistRuntimeLayer = false;
+    # FIXME: runtime layer lacks persistance
+    persistRuntimeLayer = true;
+    # persistRuntimeLayer = false;
     inputHashMethod = "store-path";
 
     nativeBuildInputs = [unzip copyDesktopItems copyDesktopIcons];
