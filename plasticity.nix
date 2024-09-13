@@ -53,11 +53,14 @@ in
 
     nativeBuildInputs = [unzip copyDesktopItems copyDesktopIcons];
 
-    # https://www.advancedinstaller.com/silent-install-exe-msi-applications.html
     winAppInstall =
       ''
+        # https://askubuntu.com/questions/29552/how-do-i-enable-font-anti-aliasing-in-wine
+        winetricks -q settings fontsmooth=rgb
+        # https://www.advancedinstaller.com/silent-install-exe-msi-applications.html
         $WINE msiexec /i ${src} /qb!
         regedit ${txtReg}
+        regedit ${./wine-breeze-dark.reg}
       ''
       + lib.optionalString (setDPI != null) ''
         regedit ${setDPIReg}
