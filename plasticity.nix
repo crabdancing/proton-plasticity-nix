@@ -45,7 +45,7 @@ in
     fileMap = {
       "${stateDir}" = "drive_c/users/$USER/AppData/Roaming/Plasticity";
     };
-
+    enableMonoBootPrompt = false;
     fileMapDuringAppInstall = false;
     persistRegistry = false;
     persistRuntimeLayer = false;
@@ -54,23 +54,27 @@ in
     nativeBuildInputs = [unzip copyDesktopItems copyDesktopIcons];
 
     winAppInstall =
+      # doubt that this actually helps
+      # winetricks -q corefonts
       ''
         # https://askubuntu.com/questions/29552/how-do-i-enable-font-anti-aliasing-in-wine
-        winetricks -q corefonts
         winetricks -q settings fontsmooth=rgb
         # https://www.advancedinstaller.com/silent-install-exe-msi-applications.html
         $WINE msiexec /i ${src} /qb!
         regedit ${txtReg}
         regedit ${./use-theme-none.reg}
         regedit ${./wine-breeze-dark.reg}
+        mkdir -p $WINEPREFIX/${stateDir}
       ''
       + lib.optionalString (setDPI != null) ''
         regedit ${setDPIReg}
       '';
     winAppPreRun = ''
+      mkdir -p $WINEPREFIX/${stateDir}
     '';
 
     winAppRun = ''
+      mkdir -p $WINEPREFIX/${stateDir}
       wine "$WINEPREFIX/drive_c/Program Files/Plasticity/Plasticity.exe" "$ARGS"
     '';
 
