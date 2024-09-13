@@ -1,6 +1,12 @@
 # Status
 
-Experimental phase. Not sure how well it works yet. May have persistence issues I need to work out.
+- Confirmed working
+- Convenient DPI control added
+- Persistence works
+
+# Known issues
+
+- If you have configured your kernel for certain kinds of security hardening, it may crash when it tries to spawn the GPU thread. Still debugging.
 
 # How it works
 
