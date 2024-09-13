@@ -18,17 +18,16 @@
 
       # I have tried unstable, and wine-ge can not seem to find it :(
       # sources = (import "${self.inputs.nixpkgs}/pkgs/applications/emulators/wine/sources.nix" {inherit pkgs;}).unstable;
-      mono = pkgs.fetchurl rec {
-        version = "8.1.0";
-        url = "https://dl.winehq.org/wine/wine-mono/${version}/wine-mono-${version}-x86.msi";
-        hash = "sha256-DtPsUzrvebLzEhVZMc97EIAAmsDFtMK8/rZ4rJSOCBA=";
-      };
+      # mono = pkgs.fetchurl rec {
+      #   version = "8.1.0";
+      #   url = "https://dl.winehq.org/wine/wine-mono/${version}/wine-mono-${version}-x86.msi";
+      #   hash = "sha256-DtPsUzrvebLzEhVZMc97EIAAmsDFtMK8/rZ4rJSOCBA=";
+      # };
 
       wine = self.inputs.nix-gaming.packages.x86_64-linux.wine-ge.override {
-        monos = [
-          mono
-        ];
-        # build = "full";
+        # monos = [
+        #   mono
+        # ];
       };
       basePlasticity = pkgs.callPackage ./plasticity.nix {
         inherit self;
@@ -39,13 +38,12 @@
       plasticityBigDPI = basePlasticity.override {
         setDPI = 90;
       };
-      plasticity = basePlasticity.override {
-        setDPI = 60;
-      };
+      plasticity =
+        basePlasticity.override {
+        };
       default = self.packages.x86_64-linux.plasticity;
 
       inherit basePlasticity;
-
       inherit wine;
     };
 
