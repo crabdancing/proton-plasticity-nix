@@ -35,6 +35,10 @@ Naturally.
 - Convenient DPI control added
 - Sets 'dark mode' wine config to better integrate the dialog box with Plasticity and with dark themes in general.
 
+## Quickstart
+
+`nix run github:crabdancing/windows-plasticity-nix`
+
 ## How it works
 
 - Nix build & fetch phase:
