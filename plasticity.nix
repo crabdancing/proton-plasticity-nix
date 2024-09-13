@@ -60,11 +60,12 @@ in
         # https://www.advancedinstaller.com/silent-install-exe-msi-applications.html
         $WINE msiexec /i ${src} /qb!
         regedit ${txtReg}
+        regedit ${./use-theme-none.reg}
+        regedit ${./wine-breeze-dark.reg}
       ''
       + lib.optionalString (setDPI != null) ''
         regedit ${setDPIReg}
       '';
-    # regedit ${./wine-breeze-dark.reg}
     winAppPreRun = ''
     '';
 
