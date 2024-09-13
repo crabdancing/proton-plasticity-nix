@@ -56,6 +56,7 @@ in
     winAppInstall =
       ''
         # https://askubuntu.com/questions/29552/how-do-i-enable-font-anti-aliasing-in-wine
+        winetricks -q corefonts
         winetricks -q settings fontsmooth=rgb
         # https://www.advancedinstaller.com/silent-install-exe-msi-applications.html
         $WINE msiexec /i ${src} /qb!
