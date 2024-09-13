@@ -1,16 +1,51 @@
-# Status
+# NixOS flake for running Plasticity-for-Windows on NixOS
 
-- Confirmed working
+> Why?
+
+In a word, xNURBS.
+
+> Why not a shell script?
+
+Reproducibility. With Nix, every dependency can be tracked and linked together via a single repo, nearly guaranteeing that if it worked before, it will keep working.
+
+This flake automatically sets up & configures Wine, fetches the Plasticity MSI installer, does the installation and runs the product, and all with a fairly reproducible layered filesystem.
+
+> Can I use this on Ubuntu / Arch / Fedora?
+
+Probably, though you'll likely need to use [nixGL](https://github.com/nix-community/nixGL). All the machines I have access to run variants of NixOS, so I haven't had the opportunity to test it.
+
+> Do you accept PRs?
+
+Naturally.
+
+## Status
+
+- Confirmed working (GPU accel, rendering, saving and loading, etc)
 - Convenient DPI control added
-- Persistence works
 
-# Known issues
+## Known issues
 
 - If you have configured your kernel for certain kinds of security hardening, it may crash when it tries to spawn the GPU thread. Still debugging.
+- Persistence is currently having issues.
+- Because of the way Plasticity tracks 'node locking', it may erroneously detect different wine instances on the same machine as 'different device'. 
 
-# How it works
+## How it works
 
-- Builds proton-ge + mono from [nix-gaming](https://github.com/fufexan/nix-gaming) repo, since stock wine does not handle hardware acceleration correctly.
-- Uses nixpkgs' wine-mono.
-- Builds semi-isolated Wine environment with [mkwindowsapp](https://github.com/emmanuelrosa/erosanix/tree/master/pkgs/mkwindowsapp).
-- Runs installation wizard during nix run phase, builds the container on the fly, and then launches Plasticity.
+- Nix build & fetch phase:
+  - Sets up proton-ge from [nix-gaming](https://github.com/fufexan/nix-gaming) as application-specific wine. This is a `wine` with proton and GloriousEggroll patches, originally intended for the gaming ecosystem.
+  - Fetches the Plasticity MSI installer
+  - Fetches Plasticity icon
+- Nix run phase:
+  - Builds semi-isolated Wine environment with [mkwindowsapp](https://github.com/emmanuelrosa/erosanix/tree/master/pkgs/mkwindowsapp).
+  - Runs installation wizard during nix run phase (if the app is not already installed)
+  - Launches Plasticity.
+
+Note that unlike conventional NixOS applications, this package does not do all of its fetching & install steps during `buildPhase` / `installPhase` / etc proper. Because of the license encumbrance and messy self-extracting executable world of Windows, binary fetching and deployment is often quite limited and awkward, and thus creates friction with Nix's build sandbox. Therefore, to avoid impurities, `mkWindowsApp` essentially creates a separate user-specific pseudo-sandbox environment, with separate wine prefixes distinguished by hashes. This allows one to retain the NixOS benefits while assembling and deploying a. To ensure purity, the application exists in a semi-isolated environment. 
+
+
+# Disclaimers, Licenses, Credits
+
+
+This is not an official project, and is not supported or endorsed by Plasticity upstream. All copyrights & trademarks are the property of their respective owners. All code unique to this repo is GNU GPLv3.
+
+This repo contains a couple bits of code/data from elsewhere, including [wine-breeze-dark.reg](https://gist.github.com/Zeinok/ceaf6ff204792dde0ae31e0199d89398) from Zeinok, and `use-theme-none.reg` from bgstack15.
