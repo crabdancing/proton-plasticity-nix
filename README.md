@@ -21,13 +21,15 @@ Naturally.
 ## Status
 
 - Confirmed working (GPU accel, rendering, saving and loading, etc)
-- Convenient DPI control added
-
-## Known issues
 
 - If you have configured your kernel for certain kinds of security hardening, it may crash when it tries to spawn the GPU thread. Still debugging.
 - Persistence is currently having issues.
-- Because of the way Plasticity tracks 'node locking', it may erroneously detect different wine instances on the same machine as 'different device'. 
+- Because of the way Plasticity tracks 'node locking', it may erroneously detect different wine instances on the same machine as a 'different device'. 
+
+## Bonus features
+
+- Convenient DPI control added
+- Sets 'dark mode' wine config to better integrate the dialog box with Plasticity and with dark themes in general.
 
 ## How it works
 
