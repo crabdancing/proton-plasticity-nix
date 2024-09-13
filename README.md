@@ -40,7 +40,7 @@ Naturally.
   - Runs installation wizard during nix run phase (if the app is not already installed)
   - Launches Plasticity.
 
-Note that unlike conventional NixOS applications, this package does not do all of its fetching & install steps during `buildPhase` / `installPhase` / etc proper. Because of the license encumbrance and messy self-extracting executable world of Windows, binary fetching and deployment is often quite limited and awkward, and thus creates friction with Nix's build sandbox. Therefore, to avoid impurities, `mkWindowsApp` essentially creates a separate user-specific pseudo-sandbox environment, with separate wine prefixes distinguished by hashes. This allows one to retain the NixOS benefits while assembling and deploying a. To ensure purity, the application exists in a semi-isolated environment. 
+Note that unlike conventional NixOS applications, this package does not do all of its fetching & install steps during `buildPhase` / `installPhase` / etc proper. Because of the license encumbrance and messy self-extracting executable world of Windows, binary fetching and deployment is often quite limited and awkward, and thus creates friction with Nix's build sandbox. Therefore, to avoid impurities, `mkWindowsApp` essentially creates a separate user-specific pseudo-sandbox environment, with separate wine prefixes distinguished by hashes. This allows one to retain the NixOS benefits while assembling and deploying an installation time 'build product', so to speak. To ensure purity, the application exists in a semi-isolated environment. 
 
 
 # Disclaimers, Licenses, Credits
