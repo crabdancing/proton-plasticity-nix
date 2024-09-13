@@ -59,10 +59,10 @@ in
     # To figure out what needs to be persisted, take at look at $(dirname $WINEPREFIX)/upper,
     # while the app is running.
     fileMap = {
-      "$HOME/.cache/${pname}" = "drive_c/${pname}/${pname}cache";
-      "$HOME/Desktop" = "drive_c/Users/$USER";
-      "$HOME/.local/share/mkWindowsApp/${pname}/AppData" = "drive_c/Users/$USER/AppData";
-      "$HOME/Documents" = "drive_c/Users/$USER/Documents";
+      # "$HOME/.cache/${pname}" = "drive_c/${pname}/${pname}cache";
+      # "$HOME/Desktop" = "drive_c/users/$USER";
+      "$HOME/.local/share/mkWindowsApp/${pname}/AppData" = "drive_c/users/$USER/AppData";
+      # "$HOME/Documents" = "drive_c/users/$USER/Documents";
     };
 
     # By default, `fileMap` is applied right before running the app and is cleaned up after the app terminates. If the following option is set to "true", then `fileMap` is also applied prior to `winAppInstall`. This is set to "false" by default.
@@ -173,7 +173,7 @@ in
         exec = pname;
         icon = pname;
         desktopName = "Windows Plasticity";
-        genericName = "3D CAD software for making anime figures";
+        genericName = "3D CAD software for artists, I guess.";
         categories = ["Graphics" "Viewer"];
       })
     ];
