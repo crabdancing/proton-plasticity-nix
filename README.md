@@ -6,7 +6,7 @@
 
 > Why not use the Linux version?
 
-In a word, [xNURBS](https://www.plasticity.xyz/#features). If you're looking for a Linux version for Nix, I've been maintaining a standalone [flake for awhile](https://github.com/alexandriaptt/plasticity-flake), and there is now also [nixpkgs support](https://search.nixos.org/packages?query=plasticity).
+In a word, [xNURBS](https://www.plasticity.xyz/#features). If you're looking for a Linux version for Nix, I've been maintaining a standalone [flake for a while](https://github.com/alexandriaptt/plasticity-flake), and there is now also [nixpkgs support](https://search.nixos.org/packages?query=plasticity).
 
 > Why not a shell script?
 
