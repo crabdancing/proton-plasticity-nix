@@ -1,4 +1,4 @@
-# NixOS flake for running Plasticity-for-Windows on NixOS
+# Flake for running Plasticity-for-Windows on NixOS
 
 > What?
 
