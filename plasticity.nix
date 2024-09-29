@@ -16,7 +16,7 @@
 }: let
   # This registry file sets winebrowser (xdg-open) as the default handler for
   # text files, instead of Wine's notepad.
-  pname = "plasticity";
+  pname = "proton-plasticity";
   txtReg = ./txt.reg;
   # Contains GPU cache, code cache, window state,
   # and the machine's unique license sig
@@ -102,7 +102,7 @@ in
         name = pname;
         exec = pname;
         icon = pname;
-        desktopName = "Plasticity for Windows";
+        desktopName = "Proton Plasticity";
         genericName = "3D CAD software for Windows-using artists, I guess.";
         categories = ["Graphics" "Viewer"];
       })
