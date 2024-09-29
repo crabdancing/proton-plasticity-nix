@@ -29,21 +29,21 @@
         #   mono
         # ];
       };
-      basePlasticity = pkgs.callPackage ./plasticity.nix {
+      baseProtonPlasticity = pkgs.callPackage ./plasticity.nix {
         inherit self;
         inherit (erosanix.lib.x86_64-linux) mkWindowsApp makeDesktopIcon copyDesktopIcons;
         inherit wine;
       };
     in {
-      plasticityBigDPI = basePlasticity.override {
+      protonPlasticityBigDPI = baseProtonPlasticity.override {
         setDPI = 90;
       };
-      plasticity =
-        basePlasticity.override {
+      protonPlasticity =
+        baseProtonPlasticity.override {
         };
-      default = self.packages.x86_64-linux.plasticity;
+      default = self.packages.x86_64-linux.protonPlasticity;
 
-      inherit basePlasticity;
+      inherit baseProtonPlasticity;
       inherit wine;
     };
 
