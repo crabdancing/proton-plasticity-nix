@@ -111,10 +111,11 @@ in
     desktopIcon = makeDesktopIcon {
       name = "plasticity";
 
-      src = fetchurl {
-        url = "https://www.plasticity.xyz/_next/image?w=256&q=75&url=%2F_next%2Fstatic%2Fmedia%2Ficon_256x256.09a58ec3.png";
-        sha256 = "sha256-OAmFMeIsrMogwTYiney7rNcKkjbSj/64kGb+6zdbRtA=";
-      };
+      # src = fetchurl {
+      #   url = "https://www.plasticity.xyz/_next/image?w=256&q=75&url=%2F_next%2Fstatic%2Fmedia%2Ficon_256x256.09a58ec3.png";
+      #   sha256 = "sha256-OAmFMeIsrMogwTYiney7rNcKkjbSj/64kGb+6zdbRtA=";
+      # };
+      src = ./icon_256x256.png;
     };
 
     meta = with lib; {
